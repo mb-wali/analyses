@@ -11,4 +11,4 @@ pom.xml.asc
 .eastwood
 .hgignore
 .hg/
-analyses.properties
+# analyses.properties

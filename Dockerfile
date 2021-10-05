@@ -4,11 +4,15 @@ WORKDIR /usr/src/app
 
 RUN apk add --no-cache git
 
-CMD ["--help"]
+# CMD ["--help"]
 
 COPY conf/main/logback.xml /usr/src/app/
 
 COPY project.clj /usr/src/app/
+
+# copy config file 
+COPY analyses.properties /etc/iplant/de/analyses.properties
+
 RUN lein deps
 
 RUN ln -s "/opt/openjdk-17/bin/java" "/bin/analyses"
@@ -30,3 +34,12 @@ LABEL org.cyverse.descriptive-version="$descriptive_version"
 LABEL org.label-schema.vcs-ref="$git_commit"
 LABEL org.label-schema.vcs-url="https://github.com/cyverse-de/analyses"
 LABEL org.label-schema.version="$descriptive_version"
+
+# build
+# docker build -t mbwali/analyses:latest .
+
+# run
+# docker run -it -p 60008:60008 mbwali/analyses:latest
+
+# config
+# /etc/iplant/de/analyses.properties
